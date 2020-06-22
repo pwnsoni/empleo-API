@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const consola = require('consola')
 const app = express()
@@ -21,6 +23,9 @@ const routes = require('./routes/index.js');
   
   app.use('/api', routes(router));
 
+  app.get('/', (req, res) => {
+    res.send('Hello Guys')
+  })
   
   // Listen the server
   // app.listen(port, host)
