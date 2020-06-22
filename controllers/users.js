@@ -29,6 +29,7 @@ module.exports = {
             status = 500;
             result.status = status;
             result.error = err;
+            console.log(err)
           }
           res.status(status).send(result);
           // Close the connection after saving
