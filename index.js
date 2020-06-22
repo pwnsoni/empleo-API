@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const express = require('express')
 const consola = require('consola')
 const app = express()
@@ -11,9 +9,6 @@ const config = require('./config')
 const router = express.Router();
 const routes = require('./routes/index.js');
 
-config.dev = process.env.NODE_ENV !== 'production'
-
-async function start () {
 
   app.use(bodyParser.urlencoded({
     extended: true
@@ -21,17 +16,20 @@ async function start () {
   app.use(bodyParser.json());
   // Init Nuxt.js
 
-  const { host, port } = config.development;
+  const port = process.env.PORT || 3000;
 
   
   app.use('/api', routes(router));
 
   
   // Listen the server
-  app.listen(port, host)
-  consola.ready({
-    message: `Server listening on http://${host}:${port}`,
-    badge: true
-  })
-}
-start()
+  // app.listen(port, host)
+  // consola.ready({
+  //   message: `Server listening on http://${host}:${port}`,
+  //   badge: true
+  // })
+
+  app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+  });
+
