@@ -16,6 +16,11 @@ const routes = require('./routes/index.js');
     extended: true
   }));
   app.use(bodyParser.json());
+
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
   // Init Nuxt.js
 
   const port = process.env.PORT || 5000;
